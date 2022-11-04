@@ -1,0 +1,42 @@
+{
+    "name": "patrickvandewal/kc-dev-tools",
+    "description": "KingsCode Dev Tools Package.",
+    "require": {
+        "php": ">=8.0",
+        "laravel/framework": "^8.0|^9.0",
+        "guzzlehttp/guzzle": "^7.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.0",
+        "mockery/mockery": "1.5.0"
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "type": "library",
+    "license": "MIT",
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "authors": [
+        {
+            "name": "Patrick van de Wal",
+            "email": "p.vandewal@live.nl"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "KingsCode\\DevTools\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "KingsCode\\DevTools\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+            ]
+        }
+    }
+}
