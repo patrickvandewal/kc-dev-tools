@@ -29,7 +29,7 @@ class DevToolsController extends Controller
                 'value' => $command,
             ];
         })->push([
-            'name' => '--- Select a command ---',
+            'name'  => '--- Select a command ---',
             'value' => null,
         ])->sortBy('name');
 
@@ -38,8 +38,8 @@ class DevToolsController extends Controller
         ]);
     }
 
-    public function process(Request $request) {
-
+    public function process(Request $request)
+    {
         $commandName = $request->input('command-name');
         $args = $request->input('arguments') ?? [];
         Artisan::call($commandName, $args);
