@@ -1,6 +1,6 @@
 <?php
 
-namespace KingsCode\DevTools\Providers;
+namespace KingsCode\DevTools;
 
 use Illuminate\Support\ServiceProvider;
 
