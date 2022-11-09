@@ -33,7 +33,7 @@ class DevToolsController extends Controller
             'value' => null,
         ])->sortBy('name');
 
-        return view('vendor.kc-dev-tools.overview', [
+        return view('kc-dev-tools::overview', [
             'commands' => $commands->values()->toArray(),
         ]);
     }
