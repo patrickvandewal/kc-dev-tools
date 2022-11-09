@@ -13,7 +13,7 @@ class DevToolsServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/../../resources/', 'kc-dev-tools');
 
         $this->publishes([
-            __DIR__.'/views/' => base_path('resources/views/vendor/kc-dev-tools'),
+            __DIR__.'/../views/' => base_path('resources/views/vendor/kc-dev-tools'),
         ]);
     }
 }
