@@ -10,10 +10,10 @@ class DevToolsServiceProvider extends ServiceProvider
     {
         $this->loadRoutesFrom(__DIR__.'/../Http/Routes.php');
 
-        $this->loadViewsFrom(__DIR__.'/../../resources/', 'kc-dev-tools');
-
         $this->publishes([
-            __DIR__.'/../views/' => base_path('resources/views/vendor'),
-        ]);
+            __DIR__ . '/../resources/views' => resource_path('views/vendor/kc-dev-tools'),
+        ], 'kc-dev-tools');
+
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'kc-dev-tools');
     }
 }

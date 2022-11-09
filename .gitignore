@@ -1,5 +1,4 @@
 .idea
-resources
 vendor
 build
 .env
