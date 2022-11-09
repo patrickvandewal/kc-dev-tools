@@ -12,10 +12,10 @@ Require the package.
 composer require patrickvandewal/kc-dev-tools
 ```
 
-Publish the service provider
+Optionally, publish the service provider
 
 ```
-php artisan vendor:publish --provider="KingsCode\KingsCodeDevTools\KCDevToolsServiceProvider"
+    php artisan vendor:publish --provider="KingsCode\DevTools\DevToolsServiceProvider"
 ```
 
 Add the dev-tools overview page to the `VerifyCsrfToken` class to the exceptions
