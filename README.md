@@ -11,6 +11,10 @@ Require the package.
 ```
 composer require patrickvandewal/kc-dev-tools
 ```
+Publish the package views by running
+```
+    php artisan vendor:publish
+```
 
 Optionally, publish the service provider
 
