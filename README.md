@@ -12,7 +12,7 @@ Require the package.
 composer require patrickvandewal/kc-dev-tools
 ```
 
-Optionally, publish the service provider
+Publish the service provider and views
 
 ```
     php artisan vendor:publish --provider="KingsCode\DevTools\Providers\DevToolsServiceProvider"
