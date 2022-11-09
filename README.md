@@ -12,11 +12,8 @@ Require the package.
 composer require patrickvandewal/kc-dev-tools
 ```
 
-[//]: # (Optionally, publish the package's configuration file by running:)
+Publish the service provider
 
-[//]: # ()
-[//]: # (```)
-
-[//]: # (php artisan vendor:publish --provider="KingsCode\KingsCodeDevTools\KCDevToolsServiceProvider")
-
-[//]: # (```)
+```
+php artisan vendor:publish --provider="KingsCode\KingsCodeDevTools\KCDevToolsServiceProvide
+```
