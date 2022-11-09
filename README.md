@@ -17,3 +17,12 @@ Publish the service provider
 ```
 php artisan vendor:publish --provider="KingsCode\KingsCodeDevTools\KCDevToolsServiceProvider"
 ```
+
+Add the dev-tools overview page to the `VerifyCsrfToken` class to the exceptions
+
+```
+    protected $except = [
+        ...
+        'dev-tools/*'
+    ];
+```
