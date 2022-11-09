@@ -15,5 +15,5 @@ composer require patrickvandewal/kc-dev-tools
 Publish the service provider
 
 ```
-php artisan vendor:publish --provider="KingsCode\KingsCodeDevTools\KCDevToolsServiceProvide
+php artisan vendor:publish --provider="KingsCode\KingsCodeDevTools\KCDevToolsServiceProvider
 ```
