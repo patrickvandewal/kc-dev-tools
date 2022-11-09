@@ -6,7 +6,7 @@
 
 ## Installation
 
-Require the package.
+Require the package. (Or as a `dev` package with the `--dev` flag)
 
 ```
 composer require patrickvandewal/kc-dev-tools
