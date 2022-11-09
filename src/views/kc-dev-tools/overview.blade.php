@@ -1,3 +1,7 @@
+@php
+	$selectedIndex = (int)data_get($_GET, 'command-index');
+@endphp
+
 <html lang="en">
 <title>KingsCode Dev Tools</title>
 <script>
@@ -6,6 +10,8 @@ function commandSelected() {
   document.getElementById('selector').submit();
 }
 </script>
+
+<body>
 
 <form id="selector" action="" method="get">
 	<select name="command-index" onchange="commandSelected()">
@@ -39,5 +45,5 @@ function commandSelected() {
 		</p>
 	</form>
 @endif
-
+</body>
 </html>
