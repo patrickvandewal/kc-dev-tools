@@ -1,5 +1,5 @@
 @php
-	$selectedIndex = (int)data_get($_GET, 'command-index');
+	$selectedIndex = (int)data_get($_POST, 'command-index', 0);
 @endphp
 
 <html lang="en">
@@ -41,6 +41,7 @@ body, form, input, option, select, .console {
 }
 
 .message {
+  padding: 10px 0px;
   color: orange;
 }
 
@@ -67,7 +68,7 @@ function commandSelected() {
 
 			<h1>Commands:</h1>
 
-			<form id="selector" action="" method="get">
+			<form id="selector" action="/dev-tools/overview" method="post">
 				<select name="command-index" onchange="commandSelected()">
 					@foreach($commands as $index => $command)
 						{{ $isSelected = $selectedIndex === $index ? 'selected' : '' }}
@@ -76,14 +77,15 @@ function commandSelected() {
 				</select>
 			</form>
 
-			@if(data_get($_GET, 'command-index'))
+			@if(data_get($_POST, 'command-index'))
 
-				<form action="/dev-tools/process" method="post">
+				<form action="/dev-tools/overview" method="post">
 
 					@php
 						$command = $commands[$selectedIndex]['value'];
 					@endphp
 
+					@if($command !== null)
 					<div class="description">{{$command->getDescription()}}</div>
 					<p>
 						@php
@@ -92,23 +94,25 @@ function commandSelected() {
 							}
 						@endphp
 					</p>
+
+					@endif
 					<p>
-						<input type="hidden" name="command-name" value="{{ $command->getName() }}">
-						<input type="hidden" name="command-index" value="{{ $selectedIndex }}">
+						<input type="hidden" name="type" value="process-command" />
+						<input type="hidden" name="command_name" value="{{ $command->getName() }}" />
+						<input type="hidden" name="command_index" value="{{ $selectedIndex }}" />
 						<input type="submit" value="Execute"/>
 					</p>
 				</form>
 			@endif
 
-			@if(data_get($_GET, 'command.message') !== null)
-				Message:
-				<div class="message"> {{ data_get($_GET, 'command.message') }} </div>
+			@if(! empty($command_message))
+				<div class="message"> {!! $command_message !!} </div>
 			@endif
 
-			@if(data_get($_GET, 'command.output'))
+			@if(! empty($command_output))
 				<div class="console">
 					<div class="consolebody">
-						<p>{!! data_get($_GET, 'command.output') !!}</p>
+						<p>{!! $command_output !!}</p>
 					</div>
 				</div>
 			@endif
@@ -118,21 +122,22 @@ function commandSelected() {
 
 			<h1>Reset Password:</h1>
 
-			<form action="/dev-tools/updatePassword" method="post">
+			<form action="/dev-tools/overview" method="post">
 				<p>
-					<input name="password-reset[email]" placeholder="E-mail" type="text">
+					<input name="password-reset[email]" placeholder="E-mail" type="text" />
 				</p>
 				<p>
-					<input name="password-reset[password]" placeholder="New Password" type="password">
+					<input name="password-reset[password]" placeholder="New Password" type="password" />
 				</p>
 				<p>
-					<input type="submit" value="Reset password"/>
+					<input type="submit" value="Reset password" />
+					<input type="hidden" name="type" value="password-reset" />
 				</p>
-				@if(data_get($_GET, 'password-reset.message') !== null)
+				@if(! empty($password_reset_message))
 					<p>
-					<div class="message">
-						{{ data_get($_GET, 'password-reset.message') }}
-					</div>
+						<div class="message">
+							{{ $password_reset_message }}
+						</div>
 					</p>
 				@endif
 			</form>
