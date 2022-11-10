@@ -12,8 +12,7 @@ body, form, input, option, select, .console {
 }
 
 .console {
-  width: 575px;
-  height: 750px;
+  width: 75%;
   box-sizing: border-box;
 }
 
@@ -26,9 +25,14 @@ body, form, input, option, select, .console {
   color: #63de00;
 }
 
-.column {
+.column-left {
   float: left;
-  width: 50%;
+  width: 75%;
+}
+
+.column-right {
+  float: right;
+  width: 25%;
 }
 
 .row:after {
@@ -59,7 +63,7 @@ function commandSelected() {
 <body>
 <div class="content">
 	<div class="row">
-		<div class="column">
+		<div class="column-left">
 
 			<h1>Commands:</h1>
 
@@ -110,7 +114,7 @@ function commandSelected() {
 			@endif
 
 		</div>
-		<div class="column">
+		<div class="column-right">
 
 			<h1>Reset Password:</h1>
 

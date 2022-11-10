@@ -25,6 +25,8 @@ class DevToolsController extends Controller
     private const NAME_INCLUSIONS = [
         'optimize:clear',
         'cache:clear',
+        'migrate',
+        'migrate:fresh',
     ];
 
     /**
