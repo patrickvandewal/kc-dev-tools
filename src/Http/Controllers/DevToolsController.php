@@ -19,6 +19,8 @@ use Illuminate\Contracts\View\View;
 
 class DevToolsController extends Controller
 {
+    private const MAX_EXECUTION_TIME = 60 * 5; // 5 minutes
+
     private const DIRECTORY = 'App\Console\Commands';
 
     private const NAME_INCLUSIONS = [
@@ -30,6 +32,8 @@ class DevToolsController extends Controller
 
     public function overview(Request $request): View
     {
+        set_time_limit(self::MAX_EXECUTION_TIME);
+
         return match ($request->input('type')) {
             'password-reset' => $this->handleAsPasswordReset($request),
             'process-command' => $this->handleAsCommand($request),
