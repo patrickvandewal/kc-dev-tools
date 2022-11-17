@@ -20,7 +20,7 @@ Optionally, publish the service provider and views
 
 Access the dev-tools at the following urls:
 ```
-{environment-url}/overview
-{environment-url}/joij/overview
+{environment-url}/dev-tools/overview
+{environment-url}/dev-tools/joij/overview
 
 ```
