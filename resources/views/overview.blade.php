@@ -6,13 +6,26 @@
 <title>KingsCode Dev Tools</title>
 <style>
 
-body, form, input, option, select, .console {
+body, form, input, option, select, textarea, .console {
   font-family: Verdana;
   font-size: 16px;
 }
 
+input, option, select, textarea
+{
+  width: 400px;
+}
+
+input[type=submit] {
+  width: 200px;
+}
+
+textarea {
+  height: 300px;
+}
+
 .console {
-  width: 75%;
+  width: 65%;
   box-sizing: border-box;
 }
 
@@ -27,12 +40,12 @@ body, form, input, option, select, .console {
 
 .column-left {
   float: left;
-  width: 75%;
+  width: 65%;
 }
 
 .column-right {
   float: right;
-  width: 25%;
+  width: 35%;
 }
 
 .row:after {
