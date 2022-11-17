@@ -18,11 +18,9 @@ Optionally, publish the service provider and views
     php artisan vendor:publish --provider="KingsCode\DevTools\Providers\DevToolsServiceProvider"
 ```
 
-Add the `dev-tools` exception to the `VerifyCsrfToken` class to allow the `POST` callback from the overview page.
-
+Access the dev-tools at the following urls:
 ```
-    protected $except = [
-        ...
-        'dev-tools/*'
-    ];
+{environment-url}/overview
+{environment-url}/joij/overview
+
 ```
