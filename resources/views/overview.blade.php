@@ -118,29 +118,29 @@ function commandSelected() {
 			@endif
 
 		</div>
+
 		<div class="column-right">
+				<h1>Reset Password:</h1>
 
-			<h1>Reset Password:</h1>
-
-			<form action="/dev-tools/overview" method="post">
-				<p>
-					<input name="password-reset[email]" placeholder="E-mail" type="text" />
-				</p>
-				<p>
-					<input name="password-reset[password]" placeholder="New Password" type="password" />
-				</p>
-				<p>
-					<input type="submit" value="Reset password" />
-					<input type="hidden" name="type" value="password-reset" />
-				</p>
-				@if(! empty($password_reset_message))
+				<form action="/dev-tools/overview" method="post">
 					<p>
-						<div class="message">
-							{{ $password_reset_message }}
-						</div>
+						<input name="password-reset[email]" placeholder="E-mail" type="text" />
 					</p>
-				@endif
-			</form>
+					<p>
+						<input name="password-reset[password]" placeholder="New Password" type="password" />
+					</p>
+					<p>
+						<input type="submit" value="Reset password" />
+						<input type="hidden" name="type" value="password-reset" />
+					</p>
+					@if(! empty($password_reset_message))
+						<p>
+							<div class="message">
+								{{ $password_reset_message }}
+							</div>
+						</p>
+					@endif
+				</form>
 		</div>
 	</div>
 </div>

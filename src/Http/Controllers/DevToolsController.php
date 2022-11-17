@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Log;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Illuminate\Contracts\View\View;
 
-class DevToolsController extends Controller
+final class DevToolsController extends Controller
 {
     private const MAX_EXECUTION_TIME = 60 * 5; // 5 minutes
 
@@ -46,10 +46,10 @@ class DevToolsController extends Controller
         return view('kc-dev-tools::overview',
             array_merge($request->post(),
                 [
-                    'commands'               => $this->getCommands(),
-                    'command_output'         => data_get($data, 'command_output', null),
-                    'command_message'        => data_get($data, 'command_message', null),
-                    'password_reset_message' => data_get($data, 'password_reset_message', null),
+                    'commands'                   => $this->getCommands(),
+                    'command_output'             => data_get($data, 'command_output', null),
+                    'command_message'            => data_get($data, 'command_message', null),
+                    'password_reset_message'     => data_get($data, 'password_reset_message', null),
                 ]));
     }
 
@@ -88,7 +88,7 @@ class DevToolsController extends Controller
                 throw new \Exception('User with the provided e-mail has not been found');
             }
 
-            if(empty ($password)) {
+            if (empty ($password)) {
                 throw new \Exception('Password cannot be empty');
             }
 

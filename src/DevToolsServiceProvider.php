@@ -4,7 +4,7 @@ namespace KingsCode\DevTools;
 
 use Illuminate\Support\ServiceProvider;
 
-class DevToolsServiceProvider extends ServiceProvider
+final class DevToolsServiceProvider extends ServiceProvider
 {
     public function boot()
     {
