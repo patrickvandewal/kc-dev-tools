@@ -23,6 +23,7 @@ Add the `DEV_TOOLS_PIN` key to your `.env` file
 ```
 DEV_TOOLS_PIN=<your key to login>
 ```
+After entering your PIN in your browser, your session lasts for one hour
 
 Access the dev-tools at the following urls:
 ```
