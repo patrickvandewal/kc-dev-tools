@@ -15,7 +15,7 @@ composer require patrickvandewal/kc-dev-tools
 Optionally, publish the service provider and views
 
 ```
-    php artisan vendor:publish --provider="KingsCode\DevTools\Providers\DevToolsServiceProvider"
+php artisan vendor:publish --provider="KingsCode\DevTools\Providers\DevToolsServiceProvider"
 ```
 
 Add the `DEV_TOOLS_PIN` key to your `.env` file
@@ -28,6 +28,5 @@ Access the dev-tools at the following urls:
 ```
 {environment-url}/dev-tools/overview
 {environment-url}/dev-tools/joij/overview
-
 ```
 
