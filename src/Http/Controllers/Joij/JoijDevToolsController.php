@@ -73,13 +73,21 @@ final class JoijDevToolsController extends BaseDevToolsController
         try {
             $candidate = $request->input('notification.candidate');
 
-            $title = $request->input('notification.title');
-            $message = $request->input('notification.message');
-            $data = $request->input('notification.data');
-
             $candidate = \App\Models\Candidate::query()->find((int) $candidate);
             if ($candidate === null) {
                 throw new \Exception('No candidate found');
+            }
+
+            $title = $request->input('notification.title');
+            $message = $request->input('notification.message');
+
+            $data = null;
+            if ($request->input('notification.data') !== null) {
+                $data = json_decode($request->input('notification.data'));
+            }
+
+            if ($data !== null && ! is_array($data)) {
+                throw new \Exception('Provided data is no valid array');
             }
 
             $testNotification = new TestNotification($title, $message, $data);
