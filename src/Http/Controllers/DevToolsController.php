@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Log;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Illuminate\Contracts\View\View;
 
-final class DevToolsController extends Controller
+final class DevToolsController extends BaseDevToolsController
 {
     private const MAX_EXECUTION_TIME = 60 * 5; // 5 minutes
 
@@ -30,13 +30,14 @@ final class DevToolsController extends Controller
         'migrate:fresh',
     ];
 
-    public function overview(Request $request): View
+    public function showOverview(Request $request): View
     {
         set_time_limit(self::MAX_EXECUTION_TIME);
 
         return match ($request->input('type')) {
             'password-reset' => $this->handleAsPasswordReset($request),
             'process-command' => $this->handleAsCommand($request),
+            'logout' => parent::logout($request),
             default => $this->handleAsView($request),
         };
     }
@@ -46,10 +47,10 @@ final class DevToolsController extends Controller
         return view('kc-dev-tools::overview',
             array_merge($request->post(),
                 [
-                    'commands'                   => $this->getCommands(),
-                    'command_output'             => data_get($data, 'command_output', null),
-                    'command_message'            => data_get($data, 'command_message', null),
-                    'password_reset_message'     => data_get($data, 'password_reset_message', null),
+                    'commands'               => $this->getCommands(),
+                    'command_output'         => data_get($data, 'command_output', null),
+                    'command_message'        => data_get($data, 'command_message', null),
+                    'password_reset_message' => data_get($data, 'password_reset_message', null),
                 ]));
     }
 
@@ -66,7 +67,7 @@ final class DevToolsController extends Controller
 
             $output = Artisan::output();
             if (! empty ($output)) {
-                $output = collect(explode('.', $output))->join('.<br />');
+                $output = collect(explode('. ', str_replace(' .', '. ', $output)))->join('.<br />');
             }
             $message = sprintf('%s has been executed', $commandName);
         }

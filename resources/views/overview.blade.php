@@ -8,11 +8,10 @@
 
 body, form, input, option, select, textarea, .console {
   font-family: Verdana;
-  font-size: 16px;
+  font-size:   16px;
 }
 
-input, option, select, textarea
-{
+input, option, select, textarea {
   width: 400px;
 }
 
@@ -25,17 +24,17 @@ textarea {
 }
 
 .console {
-  width: 65%;
+  width:      65%;
   box-sizing: border-box;
 }
 
 .console .consolebody {
-  box-sizing: border-box;
-  padding: 20px;
-  overflow: scroll;
-  overflow-x: hidden;
+  box-sizing:       border-box;
+  padding:          20px;
+  overflow:         scroll;
+  overflow-x:       hidden;
   background-color: #000;
-  color: #63de00;
+  color:            #63de00;
 }
 
 .column-left {
@@ -55,7 +54,7 @@ textarea {
 
 .message {
   padding: 10px 0px;
-  color: orange;
+  color:   orange;
 }
 
 #description {
@@ -63,7 +62,9 @@ textarea {
 }
 
 .content {
-  padding: 1%;
+  padding-top: 1px;
+  margin:      2%;
+  text-align:  left;
 }
 
 </style>
@@ -77,6 +78,9 @@ function commandSelected() {
 <body>
 <div class="content">
 	<div class="row">
+
+		@include('kc-dev-tools::logout')
+
 		<div class="column-left">
 
 			<h1>Commands:</h1>
@@ -88,6 +92,7 @@ function commandSelected() {
 						<option {{$isSelected}} value={{ $index }}>{{ $command['name'] }}</option>
 					@endforeach
 				</select>
+				<input type="hidden" name="_token" value="{{ csrf_token() }}"/>
 			</form>
 
 			@if(data_get($_POST, 'command-index'))
@@ -99,20 +104,21 @@ function commandSelected() {
 					@endphp
 
 					@if($command !== null)
-					<div class="description">{{$command->getDescription()}}</div>
-					<p>
-						@php
-							foreach($command->getDefinition()->getArguments() as $index => $argument) {
-								echo '<input name="arguments['.$argument->getName().']" placeholder='.$argument->getName().' /><br />';
-							}
-						@endphp
-					</p>
+						<div class="description">{{$command->getDescription()}}</div>
+						<p>
+							@php
+								foreach($command->getDefinition()->getArguments() as $index => $argument) {
+									echo '<input name="arguments['.$argument->getName().']" placeholder='.$argument->getName().' /><br />';
+								}
+							@endphp
+						</p>
 
 					@endif
 					<p>
-						<input type="hidden" name="type" value="process-command" />
-						<input type="hidden" name="command_name" value="{{ $command->getName() }}" />
-						<input type="hidden" name="command_index" value="{{ $selectedIndex }}" />
+						<input type="hidden" name="type" value="process-command"/>
+						<input type="hidden" name="command_name" value="{{ $command->getName() }}"/>
+						<input type="hidden" name="command_index" value="{{ $selectedIndex }}"/>
+						<input type="hidden" name="_token" value="{{ csrf_token() }}"/>
 						<input type="submit" value="Execute"/>
 					</p>
 				</form>
@@ -133,27 +139,28 @@ function commandSelected() {
 		</div>
 
 		<div class="column-right">
-				<h1>Reset Password:</h1>
+			<h1>Reset Password:</h1>
 
-				<form action="/dev-tools/overview" method="post">
+			<form action="/dev-tools/overview" method="post">
+				<p>
+					<input name="password-reset[email]" placeholder="E-mail" type="text"/>
+				</p>
+				<p>
+					<input name="password-reset[password]" placeholder="New Password" type="password"/>
+				</p>
+				<p>
+					<input type="submit" value="Reset password"/>
+					<input type="hidden" name="type" value="password-reset"/>
+					<input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+				</p>
+				@if(! empty($password_reset_message))
 					<p>
-						<input name="password-reset[email]" placeholder="E-mail" type="text" />
+					<div class="message">
+						{{ $password_reset_message }}
+					</div>
 					</p>
-					<p>
-						<input name="password-reset[password]" placeholder="New Password" type="password" />
-					</p>
-					<p>
-						<input type="submit" value="Reset password" />
-						<input type="hidden" name="type" value="password-reset" />
-					</p>
-					@if(! empty($password_reset_message))
-						<p>
-							<div class="message">
-								{{ $password_reset_message }}
-							</div>
-						</p>
-					@endif
-				</form>
+				@endif
+			</form>
 		</div>
 	</div>
 </div>

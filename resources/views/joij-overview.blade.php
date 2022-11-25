@@ -1,115 +1,117 @@
 <html lang="en">
-<title>KingsCode Dev Tools (Joij)</title>
-<style>
+<head>
+	<title>KingsCode Dev Tools (Joij)</title>
+	<style>
 
-body, form, input, option, select, textarea {
-  font-family: Verdana;
-  font-size: 16px;
-}
+    body, form, input, option, select, textarea {
+      font-family: Verdana;
+      font-size:   16px;
+    }
 
-input, option, select, textarea
-{
-  width: 400px;
-}
+    input, option, select, textarea {
+      width: 400px;
+    }
 
-input[type=submit] {
-  width: 200px;
-}
+    input[type=submit] {
+      width: 200px;
+    }
 
-textarea {
-  height: 300px;
-}
+    textarea {
+      height: 300px;
+    }
 
-.column-left {
-  float: left;
-  width: 65%;
-}
+    .column-left {
+      float: left;
+      width: 65%;
+    }
 
-.column-right {
-  float: right;
-  width: 35%;
-}
+    .column-right {
+      float: right;
+      width: 35%;
+    }
 
-.row:after {
-  display: table;
-  clear:   both;
-}
+    .row:after {
+      display: table;
+      clear:   both;
+    }
 
-.message {
-  padding: 10px 0px;
-  color: orange;
-}
+    .message {
+      padding: 10px 0px;
+      color:   orange;
+    }
 
-#description {
-  width: 500px;
-}
+    #description {
+      width: 500px;
+    }
 
-.content {
-  padding: 1%;
-}
+    .content {
+      padding-top: 1px;
+      margin:      2%;
+      text-align:  left;
+    }
 
-</style>
-
+	</style>
+</head>
 <body>
 <div class="content">
-	<div class="row">
-		<div class="column-left">
-			<div>
-				<h1>Change Environment:</h1>
 
-				<form action="/dev-tools/joij/overview" method="post">
-					<p>
-						<input name="change-environment[slug]" placeholder="Slug" type="text"/>
-					</p>
-					<p>
-						<input type="submit" value="Change Environment"/>
-						<input type="hidden" name="type" value="change-environment"/>
-					</p>
-					@if(! empty($change_environment_message))
-						<p>
-						<div class="message">
-							{{ $change_environment_message }}
-						</div>
-						</p>
-					@endif
-				</form>
-			</div>
-		</div>
-		<div class="column-right">
-			<div>
-				<h1>Send Push Notification:</h1>
+	@include('kc-dev-tools::logout')
 
-				<form id="selector" action="/dev-tools/joij/overview" method="post">
-					<select name="notification[candidate]">
-						@foreach($notification_candidates as $index => $candidate)
-							<option value="{{ data_get($candidate['value'], 'id') }}">{{ $candidate['name'] }} </option>
-						@endforeach
-					</select>
+	<div class="column-left">
+		<h1>Change Environment:</h1>
+
+		<form action="/dev-tools/joij/overview" method="post">
+			<p>
+				<input name="change-environment[slug]" placeholder="Slug" type="text"/>
+			</p>
+			<p>
+				<input type="submit" value="Change Environment"/>
+				<input type="hidden" name="type" value="change-environment"/>
+				<input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+			</p>
+			@if(! empty($change_environment_message))
+				<p>
+				<div class="message">
+					{{ $change_environment_message }}
+				</div>
+				</p>
+			@endif
+		</form>
+	</div>
+	<div class="column-right">
+		<div>
+			<h1>Send Push Notification:</h1>
+
+			<form id="selector" action="/dev-tools/joij/overview" method="post">
+				<select name="notification[candidate]">
+					@foreach($notification_candidates as $index => $candidate)
+						<option value="{{ data_get($candidate['value'], 'id') }}">{{ $candidate['name'] }} </option>
+					@endforeach
+				</select>
+				<p>
+					<input name="notification[title]" placeholder="Title" type="text"/>
+				</p>
+				<p>
+					<input name="notification[body]" placeholder="Body" type="text"/>
+				</p>
+				<p>
+					<textarea name="notification[data]" placeholder="Data"></textarea/>
+				</p>
+				<p>
+					<input type="submit" value="Send"/>
+					<input type="hidden" name="type" value="notification"/>
+					<input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+				</p>
+				@if(! empty($notification_message))
 					<p>
-						<input name="notification[title]" placeholder="Title" type="text"/>
+					<div class="message">
+						{{ $notification_message }}
+					</div>
 					</p>
-					<p>
-						<input name="notification[body]" placeholder="Body" type="text"/>
-					</p>
-					<p>
-						<textarea name="notification[data]" placeholder="Data"></textarea/>
-					</p>
-					<p>
-						<input type="submit" value="Send"/>
-						<input type="hidden" name="type" value="notification"/>
-					</p>
-					@if(! empty($notification_message))
-						<p>
-						<div class="message">
-							{{ $notification_message }}
-						</div>
-						</p>
-					@endif
-				</form>
-			</div>
+				@endif
+			</form>
 		</div>
 	</div>
-</div>
 </div>
 </body>
 </html>
