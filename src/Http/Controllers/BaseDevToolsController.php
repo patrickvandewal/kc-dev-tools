@@ -59,7 +59,7 @@ abstract class BaseDevToolsController extends Controller
     public function showLogin(Request $request, string $message = null): View
     {
         return view('kc-dev-tools::login', [
-            'request_uri'  => $request->getRequestUri(),
+            'request_uri'  => $request->getUri(),
             'auth_message' => $message,
         ]);
     }

@@ -7,7 +7,7 @@
 </style>
 
 <div class="logout">
-	<form action="{{ $url }}" method="post">
+	<form action="{{ $request_uri }}" method="post">
 		<input type="submit" value="Logout"/>
 		<input type="hidden" name="type" value="logout"/>
 		<input type="hidden" name="_token" value="{{ csrf_token() }}"/>

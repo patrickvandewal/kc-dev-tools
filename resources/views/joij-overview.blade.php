@@ -55,12 +55,12 @@
 <body>
 <div class="content">
 
-	@include('kc-dev-tools::logout', ['url'=>'/dev-tools/joij/overview'])
+	@include('kc-dev-tools::logout')
 
 	<div class="column-left">
 		<h1>Change Environment:</h1>
 
-		<form action="/dev-tools/joij/overview" method="post">
+		<form action="{{ $request_uri }}" method="post">
 			<p>
 				<input name="change-environment[slug]" placeholder="Slug" type="text"/>
 			</p>
@@ -82,7 +82,7 @@
 		<div>
 			<h1>Send Push Notification:</h1>
 
-			<form id="selector" action="/dev-tools/joij/overview" method="post">
+			<form id="selector" action="{{ $request_uri }}" method="post">
 				<select name="notification[candidate]">
 					@foreach($notification_candidates as $index => $candidate)
 						<option value="{{ data_get($candidate['value'], 'id') }}">{{ $candidate['name'] }} </option>

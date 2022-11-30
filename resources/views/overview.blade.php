@@ -79,13 +79,13 @@ function commandSelected() {
 <div class="content">
 	<div class="row">
 
-		@include('kc-dev-tools::logout', ['url'=>'/dev-tools/overview'])
+		@include('kc-dev-tools::logout')
 
 		<div class="column-left">
 
 			<h1>Commands:</h1>
 
-			<form id="selector" action="/dev-tools/overview" method="post">
+			<form id="selector" action="{{ $request_uri }}" method="post">
 				<select name="command-index" onchange="commandSelected()">
 					@foreach($commands as $index => $command)
 						{{ $isSelected = $selectedIndex === $index ? 'selected' : '' }}
@@ -97,7 +97,7 @@ function commandSelected() {
 
 			@if(data_get($_POST, 'command-index'))
 
-				<form action="/dev-tools/overview" method="post">
+				<form action="{{ $request_uri }}" method="post">
 
 					@php
 						$command = $commands[$selectedIndex]['value'];
@@ -141,7 +141,7 @@ function commandSelected() {
 		<div class="column-right">
 			<h1>Reset Password:</h1>
 
-			<form action="/dev-tools/overview" method="post">
+			<form action="{{ $request_uri }}" method="post">
 				<p>
 					<input name="password-reset[email]" placeholder="E-mail" type="text"/>
 				</p>

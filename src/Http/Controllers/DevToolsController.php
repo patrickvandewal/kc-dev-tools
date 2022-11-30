@@ -47,6 +47,7 @@ final class DevToolsController extends BaseDevToolsController
         return view('kc-dev-tools::overview',
             array_merge($request->post(),
                 [
+                    'request_uri'            => $request->getUri(),
                     'commands'               => $this->getCommands(),
                     'command_output'         => data_get($data, 'command_output', null),
                     'command_message'        => data_get($data, 'command_message', null),
