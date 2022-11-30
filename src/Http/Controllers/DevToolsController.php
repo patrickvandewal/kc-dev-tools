@@ -63,7 +63,7 @@ final class DevToolsController extends BaseDevToolsController
         $output = '';
 
         if ($commandName !== null) {
-            Artisan::call($commandName, $args);
+            Artisan::call($commandName, array_merge(['--no-interaction' => null], $args));
 
             $output = Artisan::output();
             if (! empty ($output)) {
