@@ -55,7 +55,7 @@
 <body>
 <div class="content">
 
-	@include('kc-dev-tools::logout')
+	@include('kc-dev-tools::logout', ['url'=>'/dev-tools/joij/overview'])
 
 	<div class="column-left">
 		<h1>Change Environment:</h1>

@@ -79,7 +79,7 @@ function commandSelected() {
 <div class="content">
 	<div class="row">
 
-		@include('kc-dev-tools::logout')
+		@include('kc-dev-tools::logout', ['url'=>'/dev-tools/overview'])
 
 		<div class="column-left">
 
