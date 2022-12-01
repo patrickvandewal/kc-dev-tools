@@ -34,6 +34,7 @@ final class JoijDevToolsController extends BaseDevToolsController
     {
         return view('kc-dev-tools::joij-overview',
             array_merge($request->post(), [
+                'request_uri'                => $request->getUri(),
                 'change_environment_message' => data_get($data, 'change_environment_message', null),
                 'notification_candidates'    => $this->getEligibleNotificationCandidates(),
                 'notification_message'       => data_get($data, 'notification_message', null),
